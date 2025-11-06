@@ -13,7 +13,8 @@ from sqlalchemy.orm import Session
 from models import init_db, get_session, Shop, Employee, Customer, Appointment, Service
 from booking_manager import BookingManager
 from ai_assistant import AIAssistant
-
+import os
+database_url = os.environ.get("DATABASE_URL", "sqlite:///barber_shop.db")
 # Initialize FastAPI app
 app = FastAPI(
     title="Barber Shop Scheduling API",
@@ -414,4 +415,5 @@ if __name__ == "__main__":
     # Run the server
     print("Starting Barber Shop Scheduling API...")
     print("Documentation available at: http://localhost:8000/docs")
+
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)    
